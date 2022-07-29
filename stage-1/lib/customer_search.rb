@@ -20,6 +20,9 @@ class CustomerSearch
                 email: customer_data[4], 
             }
         end
+    end
 
+    def search_age(min, max)
+        @customers.select { | customer | customer[:age] >= min && customer[:age] <= max}
     end
 end

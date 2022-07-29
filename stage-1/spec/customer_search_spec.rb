@@ -11,4 +11,16 @@ describe CustomerSearch do
             email: "orci.lobortis@icloud.org"})
         end
     end
+
+    describe "#search_age" do
+        it "searches customers in age range" do
+            expect(subject.search_age(40, 59).first).to eq({
+            name: "Macey Bernard", 
+            age: 54, 
+            address: "Ap #617-9273 Donec St.", 
+            phone: "(0118) 830 5233", 
+            email: "arcu.iaculis.enim@outlook.edu"
+            })
+        end
+    end
 end
