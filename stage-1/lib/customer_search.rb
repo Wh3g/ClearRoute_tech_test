@@ -23,6 +23,22 @@ class CustomerSearch
     end
 
     def search_age(min, max)
-        @customers.select { | customer | customer[:age] >= min && customer[:age] <= max}
+        search_results = @customers.select { | customer | customer[:age] >= min && customer[:age] <= max}
+        write_file(search_results) 
+        search_results       
+    end
+
+    def write_file(search_results)
+        results_file = File.new("search_results.txt", "w")
+        results_file.puts(format(search_results))
+        results_file.close
+    end
+
+    def format(search_results)
+        output = "name,age,address,phone,email\n"
+        search_results.each do | customer |
+            output << "#{customer[:name]},#{customer[:age]},#{customer[:address]},#{customer[:phone]},#{customer[:email]}\n"
+        end
+        output
     end
 end
